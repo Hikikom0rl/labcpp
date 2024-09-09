@@ -20,12 +20,12 @@ public:
 
     std::string_view surename() const
     {
-        return "Seleznev"
+        return "Seleznyov"
     }
 
     std::string fullname() const
     {
-        return "Seleznev Stanislav"
+        return "Seleznyov Stanislav"
     }
 
 private:
