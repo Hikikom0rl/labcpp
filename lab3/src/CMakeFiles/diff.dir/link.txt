@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdiff.a CMakeFiles/diff.dir/diff.cpp.o
+/usr/bin/ranlib libdiff.a

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/diff.dir/diff.cpp.o -o diff 
