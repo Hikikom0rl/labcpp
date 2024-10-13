@@ -2,6 +2,6 @@
 #include "diff.h"
 
 int main(){
-	std::cout<<diffsqrEq(1,0,0,0.01,1)<<std::endl;
+	std::cout<<diff(sin,0,0.01)<<std::endl;
 	return 1;
 }

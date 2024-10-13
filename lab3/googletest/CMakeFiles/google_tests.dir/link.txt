@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/google_tests.dir/googletest.cpp.o -o google_tests  ../src/libdiff.a ../lib/libgtest.a ../lib/libgtest_main.a ../lib/libgtest.a 
