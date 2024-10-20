@@ -1,0 +1,5 @@
+add_test( iomanip::simple /home/hikikomori/Documents/cpplabs/master-programming-task/lab2/tests/iomaniptests iomanip::simple  )
+set_tests_properties( iomanip::simple PROPERTIES WORKING_DIRECTORY /home/hikikomori/Documents/cpplabs/master-programming-task/lab2/tests)
+add_test( iomanip::one_operand /home/hikikomori/Documents/cpplabs/master-programming-task/lab2/tests/iomaniptests iomanip::one_operand  )
+set_tests_properties( iomanip::one_operand PROPERTIES WORKING_DIRECTORY /home/hikikomori/Documents/cpplabs/master-programming-task/lab2/tests)
+set( iomaniptests_TESTS iomanip::simple iomanip::one_operand)

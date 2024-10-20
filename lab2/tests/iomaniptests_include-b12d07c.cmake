@@ -1,0 +1,5 @@
+if(EXISTS "/home/hikikomori/Documents/cpplabs/master-programming-task/lab2/tests/iomaniptests_tests-b12d07c.cmake")
+  include("/home/hikikomori/Documents/cpplabs/master-programming-task/lab2/tests/iomaniptests_tests-b12d07c.cmake")
+else()
+  add_test(iomaniptests_NOT_BUILT-b12d07c iomaniptests_NOT_BUILT-b12d07c)
+endif()
