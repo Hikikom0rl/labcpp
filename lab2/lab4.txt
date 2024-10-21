@@ -1,0 +1,53 @@
+ostream& endm(ostream& os) {
+    return os << "[eol]\n" << flush;
+}
+
+struct Squares{ };
+
+struct squaresos {
+    ostream& os;
+    squaresos(ostream& os) : os(os) {}
+};
+
+squaresos operator<<(ostream& os, const Squares& cs) {
+    return squaresos(os);
+}
+
+template<typename T>
+ostream& operator<<(squaresos cs, const T& a) {
+    return cs.os << '[' << a << ']';
+}
+
+struct Add {};
+
+struct addos {
+    ostream& os;
+    addos(ostream& os) : os(os) {}
+};
+
+template<typename T>
+struct addos2 {
+    ostream& os;
+    T el;
+    addos2(ostream& os, T el) : os{os}, el{ el } {};
+};
+
+addos operator<<(ostream& os, const Add& a) {
+    return addos(os);
+}
+
+template<typename T>
+addos2<T>  operator<<(addos a, const T& t) {
+    return addos2<T>(a.os,t);
+}
+
+template<typename T,typename T1>
+ostream& operator<<(addos2<T> a, const T1& t) {
+    return a.os << a.el + t;
+}
+
+
+
+
+const Squares squares;
+const Add add;
