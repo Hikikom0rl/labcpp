@@ -1,0 +1,28 @@
+template<class T, class MutexInjection = std::mutex>
+class ptr_holder
+{
+public:
+    ptr_holder(T* ptr) : ptr_(ptr) {}
+
+    //{ describe proxy object
+    class proxy : private std::lock_guard<MutexInjection>
+    {
+    public:
+        proxy(T* t, MutexInjection& m) : std::lock_guard<MutexInjection>(m), t{t}
+        {}
+        T* operator ->() const {
+         return t;
+        }
+    private:
+        T* t;
+    };
+    proxy operator -> () const
+    {
+        return proxy(ptr_,mutex_) ;
+    }
+    //}
+
+private:
+    T* ptr_;
+    mutable MutexInjection mutex_;
+};
