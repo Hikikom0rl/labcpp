@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <omp.h>
+
+unsigned long long factorial_mod(int k, int mod) {
+    unsigned long long result = 1;
+    
+    #pragma omp parallel for reduction(*:result)
+    for (int i = 1; i <= k; i++) {
+        result = (result * i) % mod;
+    }
+
+    return result;
+}
+
+int main(int argc, char *argv[]) {
+    int k = 0;
+    int pnum = 1; // Количество потоков
+    int mod = 1;
+
+    // Парсинг аргументов командной строки
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-k") == 0 && i + 1 < argc) {
+            k = atoi(argv[++i]);
+        } else if (strcmp(argv[i], "--pnum") == 0 && i + 1 < argc) {
+            pnum = atoi(argv[++i]);
+        } else if (strcmp(argv[i], "--mod") == 0 && i + 1 < argc) {
+            mod = atoi(argv[++i]);
+        }
+    }
+
+    if (k < 0) {
+        fprintf(stderr, "Ошибка: k должно быть неотрицательным.n");
+        return EXIT_FAILURE;
+    }
+    
+    if (mod <= 0) {
+        fprintf(stderr, "Ошибка: mod должно быть положительным.n");
+        return EXIT_FAILURE;
+    }
+
+    omp_set_num_threads(pnum);
+    unsigned long long result = factorial_mod(k, mod);
+    
+    printf("Факториал %d по модулю %d равен: %llun", k, mod, result);
+    
+    return EXIT_SUCCESS;
+}
